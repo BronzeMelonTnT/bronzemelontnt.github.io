@@ -73,6 +73,81 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-【模板】排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/12/14/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2023-12-14T11:28:15.000Z" itemprop="datePublished">2023-12-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/12/14/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%8E%92%E5%BA%8F/">【模板】排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1177">【模板】快速排序 - 洛谷</a></p>
+<h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1. 冒泡排序"></a>1. 冒泡排序</h3><p><strong>排序原理：</strong> 每次将未确定部分的相邻两个值对比，设为$a*{i},a*{i+1}$，如果$a*{i}&gt;a*{i+1}$,则对这两个值进行交换，可以使用<code>swap</code>来快速对两个值进行交换。 那么，这样一轮交换下去，第一个数就可以确定是最小的了。以此类推，直到所有值都被确定，就得出最终排好序的数列了。 <strong>时间复杂度：$O(n^2) $</strong></p>
+<p><strong>核心模板代码如下：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n,a[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pop_sort</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">1</span>;j&lt;n;j++)</span><br><span class="line">            <span class="keyword">if</span> (a[j]&gt;a[j+<span class="number">1</span>]) <span class="built_in">swap</span>(a[j],a[j+<span class="number">1</span>]);<span class="comment">//change a[j] and a[j+1].</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-桶排序"><a href="#2-桶排序" class="headerlink" title="2. 桶排序"></a>2. 桶排序</h3><p><strong>排序原理：</strong> 桶排序的原理很简单，就是定义一个数组为桶，然后每个桶代表一个数字，每输入一个数就将这个数对应的桶加上 1（比如说 3，它所对应的桶下标就是 3），最后扫描桶，因为题目要求是从小到大排序，所以就直接正序扫描即可，只要桶里有值就输出。 这种排序的速度比较快，但是缺点是数值如果数的范围十分大，需要定义一个$10^9$大的桶，这样会MLE。 **时间复杂度：$O(n+k)$**（k为待排序数据值域） <strong>核心模板代码如下：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e8</span> + <span class="number">9</span>;</span><br><span class="line"><span class="type">int</span> book[N];</span><br><span class="line"><span class="type">int</span> n,a;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;a,book[a]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">1e8</span>;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=book[i];j++) cout&lt;&lt;i&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-快速排序"><a href="#3-快速排序" class="headerlink" title="3. 快速排序"></a>3. 快速排序</h3><p><strong>排序原理：</strong> 我们设待排序的序列为一个长度为$n$的序列$a$。 快速排序的具体原理如下： 首先，在$a$中随机选择一个数$x$，之后我们进行如下操作： 如果$n&#x3D;0$或$n&#x3D;1$，此时根本无需排序，直接退出； 定义三个新的序列$b$, $c$, $d$； 在$a$中随机选择一个数$x$； 遍历整个序列$a$，将比$x$小的放在$b$内，比$x$大的放在$d$内，和$x$相等的放在$c$内； 将$b$,$d$按如上过程继续排序。 序列$c$中的数因为都相等所以不必排序。 <strong>时间复杂度：$O(nlogn) $</strong></p>
+<p><strong>核心模板代码如下：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">quicksort</span><span class="params">(<span class="type">int</span> a[],<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i=l,j=r,flag=a[(l+r)/<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(a[i]&lt;flag)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(a[j]&gt;flag)&#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;=j)&#123;</span><br><span class="line">            <span class="built_in">swap</span>(a[i],a[j]);</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">while</span>(i&lt;=j);</span><br><span class="line">    <span class="keyword">if</span>(l&lt;j)&#123;</span><br><span class="line">        <span class="built_in">quicksort</span>(a,l,j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;r)&#123;</span><br><span class="line">        <span class="built_in">quicksort</span>(a,i,r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-归并排序"><a href="#4-归并排序" class="headerlink" title="4. 归并排序"></a>4. 归并排序</h3><p><strong>排序原理：</strong> 归并排序用的是分治思想，分为三大步：</p>
+<ol>
+<li>将$n$个元素分成两个含有$n÷2$个元素的子序列。</li>
+<li>解决：用合并排序法对两个子序列递归来排序。</li>
+<li>合并：合并两个已排序的子序列来得到最终的排序结果。 <strong>时间复杂度：$O(nlogn)$</strong></li>
+</ol>
+<p><img src="https://pic.rmb.bdstatic.com/bjh/down/095deac03e3678e35646bca306d641fc.gif" alt="https://pic.rmb.bdstatic.com/bjh/down/095deac03e3678e35646bca306d641fc.gif"></p>
+<p><strong>两种实现方法：</strong></p>
+<ol>
+<li>迭代法</li>
+</ol>
+<blockquote>
+<p>① 申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列。  ② 设定两个指针，最初位置分别为两个已经排序序列的起始位置。  ③ 比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置。  ④ 重复步骤③直到某一指针到达序列尾。  ⑤ 将另一序列剩下的所有元素直接复制到合并序列尾。</p>
+</blockquote>
+<p><strong>核心模板代码如下：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 归并排序（C++-迭代版）</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge_sort</span><span class="params">(T arr[], <span class="type">int</span> len)</span> </span>&#123;</span><br><span class="line">    T* a = arr;</span><br><span class="line">    T* b = <span class="keyword">new</span> T[len];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> seg = <span class="number">1</span>; seg &lt; len; seg += seg) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> start = <span class="number">0</span>; start &lt; len; start += seg + seg) &#123;</span><br><span class="line">            <span class="type">int</span> low = start, mid = <span class="built_in">min</span>(start + seg, len), high = <span class="built_in">min</span>(start + seg + seg, len);</span><br><span class="line">            <span class="type">int</span> k = low;</span><br><span class="line">            <span class="type">int</span> start1 = low, end1 = mid;</span><br><span class="line">            <span class="type">int</span> start2 = mid, end2 = high;</span><br><span class="line">            <span class="keyword">while</span> (start1 &lt; end1 &amp;&amp; start2 &lt; end2)</span><br><span class="line">                b[k++] = a[start1] &lt; a[start2] ? a[start1++] : a[start2++];</span><br><span class="line">            <span class="keyword">while</span> (start1 &lt; end1)</span><br><span class="line">                b[k++] = a[start1++];</span><br><span class="line">            <span class="keyword">while</span> (start2 &lt; end2)</span><br><span class="line">                b[k++] = a[start2++];</span><br><span class="line">        &#125;</span><br><span class="line">        T* temp = a;</span><br><span class="line">        a = b;</span><br><span class="line">        b = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (a != arr) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">            b[i] = a[i];</span><br><span class="line">        b = a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span>[] b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>递归法</li>
+</ol>
+<blockquote>
+<p>① 将序列每相邻两个数字进行归并操作，形成$\left \lfloor \frac{n}{2}  \right \rfloor $个序列，排序后每个序列包含两个元素。  ② 将上述序列再次归并，形成$\left \lfloor \frac{n}{4}  \right \rfloor $个序列，每个序列包含四个元素。  ③ 重复步骤②，直到所有元素排序完毕。</p>
+</blockquote>
+<p><strong>核心模板代码如下：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mergesort</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (l == r)<span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">mergesort</span>(l, mid, a);</span><br><span class="line">    <span class="built_in">mergesort</span>(mid + <span class="number">1</span>, r, a);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = l, j = mid + <span class="number">1</span>, k = l;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &gt; a[j])</span><br><span class="line">            b[k++] = a[j++];</span><br><span class="line">        <span class="keyword">else</span> b[k++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">        b[k++] = a[i++];</span><br><span class="line">    <span class="keyword">while</span> (j &lt;= r)</span><br><span class="line">        b[k++] = a[j++];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++)</span><br><span class="line">        a[i] = b[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/12/14/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%8E%92%E5%BA%8F/" data-id="clq548gur0000n49of8x5gvlw" data-title="【模板】排序" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-test-my-site" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/12/14/test-my-site/" class="article-date">
@@ -137,81 +212,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="http://example.com/2023/12/14/test-my-site/" data-id="clq53bkt20001qw9od2qpbmtv" data-title="test_my_site" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-【模板】排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/14/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%8E%92%E5%BA%8F/" class="article-date">
-  <time class="dt-published" datetime="2023-12-14T10:54:44.000Z" itemprop="datePublished">2023-12-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/12/14/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%8E%92%E5%BA%8F/">test_my_site</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1177">【模板】快速排序 - 洛谷</a></p>
-<h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1. 冒泡排序"></a>1. 冒泡排序</h3><p><strong>排序原理：</strong> 每次将未确定部分的相邻两个值对比，设为$a*{i},a*{i+1}$，如果$a*{i}&gt;a*{i+1}$,则对这两个值进行交换，可以使用<code>swap</code>来快速对两个值进行交换。 那么，这样一轮交换下去，第一个数就可以确定是最小的了。以此类推，直到所有值都被确定，就得出最终排好序的数列了。 <strong>时间复杂度：$O(n^2) $</strong></p>
-<p><strong>核心模板代码如下：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n,a[<span class="number">100001</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pop_sort</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j=<span class="number">1</span>;j&lt;n;j++)</span><br><span class="line">            <span class="keyword">if</span> (a[j]&gt;a[j+<span class="number">1</span>]) <span class="built_in">swap</span>(a[j],a[j+<span class="number">1</span>]);<span class="comment">//change a[j] and a[j+1].</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-桶排序"><a href="#2-桶排序" class="headerlink" title="2. 桶排序"></a>2. 桶排序</h3><p><strong>排序原理：</strong> 桶排序的原理很简单，就是定义一个数组为桶，然后每个桶代表一个数字，每输入一个数就将这个数对应的桶加上 1（比如说 3，它所对应的桶下标就是 3），最后扫描桶，因为题目要求是从小到大排序，所以就直接正序扫描即可，只要桶里有值就输出。 这种排序的速度比较快，但是缺点是数值如果数的范围十分大，需要定义一个$10^9$大的桶，这样会MLE。 **时间复杂度：$O(n+k)$**（k为待排序数据值域） <strong>核心模板代码如下：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e8</span> + <span class="number">9</span>;</span><br><span class="line"><span class="type">int</span> book[N];</span><br><span class="line"><span class="type">int</span> n,a;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;a,book[a]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">1e8</span>;i++) <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=book[i];j++) cout&lt;&lt;i&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-快速排序"><a href="#3-快速排序" class="headerlink" title="3. 快速排序"></a>3. 快速排序</h3><p><strong>排序原理：</strong> 我们设待排序的序列为一个长度为$n$的序列$a$。 快速排序的具体原理如下： 首先，在$a$中随机选择一个数$x$，之后我们进行如下操作： 如果$n&#x3D;0$或$n&#x3D;1$，此时根本无需排序，直接退出； 定义三个新的序列$b$, $c$, $d$； 在$a$中随机选择一个数$x$； 遍历整个序列$a$，将比$x$小的放在$b$内，比$x$大的放在$d$内，和$x$相等的放在$c$内； 将$b$,$d$按如上过程继续排序。 序列$c$中的数因为都相等所以不必排序。 <strong>时间复杂度：$O(nlogn) $</strong></p>
-<p><strong>核心模板代码如下：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">quicksort</span><span class="params">(<span class="type">int</span> a[],<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i=l,j=r,flag=a[(l+r)/<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(a[i]&lt;flag)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(a[j]&gt;flag)&#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;=j)&#123;</span><br><span class="line">            <span class="built_in">swap</span>(a[i],a[j]);</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">while</span>(i&lt;=j);</span><br><span class="line">    <span class="keyword">if</span>(l&lt;j)&#123;</span><br><span class="line">        <span class="built_in">quicksort</span>(a,l,j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;r)&#123;</span><br><span class="line">        <span class="built_in">quicksort</span>(a,i,r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-归并排序"><a href="#4-归并排序" class="headerlink" title="4. 归并排序"></a>4. 归并排序</h3><p><strong>排序原理：</strong> 归并排序用的是分治思想，分为三大步：</p>
-<ol>
-<li>将$n$个元素分成两个含有$n÷2$个元素的子序列。</li>
-<li>解决：用合并排序法对两个子序列递归来排序。</li>
-<li>合并：合并两个已排序的子序列来得到最终的排序结果。 <strong>时间复杂度：$O(nlogn)$</strong></li>
-</ol>
-<p><img src="https://pic.rmb.bdstatic.com/bjh/down/095deac03e3678e35646bca306d641fc.gif" alt="https://pic.rmb.bdstatic.com/bjh/down/095deac03e3678e35646bca306d641fc.gif"></p>
-<p><strong>两种实现方法：</strong></p>
-<ol>
-<li>迭代法</li>
-</ol>
-<blockquote>
-<p>① 申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列。  ② 设定两个指针，最初位置分别为两个已经排序序列的起始位置。  ③ 比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置。  ④ 重复步骤③直到某一指针到达序列尾。  ⑤ 将另一序列剩下的所有元素直接复制到合并序列尾。</p>
-</blockquote>
-<p><strong>核心模板代码如下：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 归并排序（C++-迭代版）</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge_sort</span><span class="params">(T arr[], <span class="type">int</span> len)</span> </span>&#123;</span><br><span class="line">    T* a = arr;</span><br><span class="line">    T* b = <span class="keyword">new</span> T[len];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> seg = <span class="number">1</span>; seg &lt; len; seg += seg) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> start = <span class="number">0</span>; start &lt; len; start += seg + seg) &#123;</span><br><span class="line">            <span class="type">int</span> low = start, mid = <span class="built_in">min</span>(start + seg, len), high = <span class="built_in">min</span>(start + seg + seg, len);</span><br><span class="line">            <span class="type">int</span> k = low;</span><br><span class="line">            <span class="type">int</span> start1 = low, end1 = mid;</span><br><span class="line">            <span class="type">int</span> start2 = mid, end2 = high;</span><br><span class="line">            <span class="keyword">while</span> (start1 &lt; end1 &amp;&amp; start2 &lt; end2)</span><br><span class="line">                b[k++] = a[start1] &lt; a[start2] ? a[start1++] : a[start2++];</span><br><span class="line">            <span class="keyword">while</span> (start1 &lt; end1)</span><br><span class="line">                b[k++] = a[start1++];</span><br><span class="line">            <span class="keyword">while</span> (start2 &lt; end2)</span><br><span class="line">                b[k++] = a[start2++];</span><br><span class="line">        &#125;</span><br><span class="line">        T* temp = a;</span><br><span class="line">        a = b;</span><br><span class="line">        b = temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (a != arr) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">            b[i] = a[i];</span><br><span class="line">        b = a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span>[] b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>递归法</li>
-</ol>
-<blockquote>
-<p>① 将序列每相邻两个数字进行归并操作，形成$\left \lfloor \frac{n}{2}  \right \rfloor $个序列，排序后每个序列包含两个元素。  ② 将上述序列再次归并，形成$\left \lfloor \frac{n}{4}  \right \rfloor $个序列，每个序列包含四个元素。  ③ 重复步骤②，直到所有元素排序完毕。</p>
-</blockquote>
-<p><strong>核心模板代码如下：</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">mergesort</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (l == r)<span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">mergesort</span>(l, mid, a);</span><br><span class="line">    <span class="built_in">mergesort</span>(mid + <span class="number">1</span>, r, a);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> i = l, j = mid + <span class="number">1</span>, k = l;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &gt; a[j])</span><br><span class="line">            b[k++] = a[j++];</span><br><span class="line">        <span class="keyword">else</span> b[k++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">        b[k++] = a[i++];</span><br><span class="line">    <span class="keyword">while</span> (j &lt;= r)</span><br><span class="line">        b[k++] = a[j++];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= r; i++)</span><br><span class="line">        a[i] = b[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/14/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%8E%92%E5%BA%8F/" data-id="clq548gur0000n49of8x5gvlw" data-title="test_my_site" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -305,11 +305,11 @@
       <ul>
         
           <li>
-            <a href="/2023/12/14/test-my-site/">test_my_site</a>
+            <a href="/2023/12/14/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%8E%92%E5%BA%8F/">【模板】排序</a>
           </li>
         
           <li>
-            <a href="/2023/12/14/%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%8E%92%E5%BA%8F/">test_my_site</a>
+            <a href="/2023/12/14/test-my-site/">test_my_site</a>
           </li>
         
           <li>
