@@ -1,6 +1,8 @@
 @font-face {
-  font-family: 'lxgw';
-  font-display: swap;
-  src: url('/fonts/LXGWWenKaiMono-Regular.ttf') format("truetype");  
-  font-display: swap;
+	font-family: 'LXGWWenKaiMono-Regular';
+	font-display: swap;
+	src: url('/fonts/LXGWWenKaiMono-Regular.ttf') format("truetype");
+}
+body {
+	font-family: 'LXGWWenKaiMono-Regular';
 }
