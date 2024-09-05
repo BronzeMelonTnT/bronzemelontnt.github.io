@@ -1,0 +1,5 @@
+@font-face {
+  font-family: 'NotoSerif';
+  font-display: swap;
+  src: url('./font/NotoSerifSC-Regular.ttf') format("truetype");
+}
