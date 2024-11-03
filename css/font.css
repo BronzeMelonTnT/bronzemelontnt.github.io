@@ -3,3 +3,9 @@
   font-display: swap;
   src: url('./font/NotoSerifSC-Regular.ttf') format("truetype");
 }
+
+@font-face {
+  font-family: 'Fira Code';
+  font-display: swap;
+  src: url('./font/FiraCode-Regular.ttf') format("truetype");
+}
