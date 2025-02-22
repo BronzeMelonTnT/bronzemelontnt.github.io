@@ -1,26 +1,115 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Thy's Blog</title><meta name="author" content="ThySecret,2504371473@qq.com"><meta name="copyright" content="ThySecret"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Thy's Blog</title><meta name="author" content="ThySecret,2504371473@qq.com"><meta name="copyright" content="ThySecret"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="Thy&#39;s Blog">
 <meta property="og:url" content="https://bronzemelontnt.github.io/page/2/index.html">
 <meta property="og:site_name" content="Thy&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/pmyhcjyb.png">
+<meta property="og:image" content="https://bronzemelontnt.github.io/img/butterfly-icon.png">
 <meta property="article:author" content="ThySecret">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/pmyhcjyb.png"><link rel="shortcut icon" href="https://cdn.luogu.com.cn/upload/image_hosting/44vuyxwf.png"><link rel="canonical" href="https://bronzemelontnt.github.io/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+<meta name="twitter:image" content="https://bronzemelontnt.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://bronzemelontnt.github.io/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  localSearch: undefined,
   translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
-    homepage: true,
-    post: true
+    homepage: false,
+    post: false
   },
   runtime: '',
   dateSuffix: {
@@ -31,267 +120,108 @@
     month: '个月前'
   },
   copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  lightbox: 'null',
+  Snackbar: undefined,
   infinitegrid: {
     js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
     buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
+  islazyloadPlugin: false,
   isAnchor: false,
   percent: {
     toc: true,
-    rightside: true,
+    rightside: false,
   },
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'Thy\'s Blog',
-  isPost: false,
-  isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2025-02-19 18:35:26'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Thy's Blog</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">Thy's Blog</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/post/76325377/" title="【题解】NOIP2024 编辑字符串"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】NOIP2024 编辑字符串"></a></div><div class="recent-post-info"><a class="article-title" href="/post/76325377/" title="【题解】NOIP2024 编辑字符串">【题解】NOIP2024 编辑字符串</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-30T10:03:48.000Z" title="发表于 2024-11-30 18:03:48">2024-11-30</time></span></div><div class="content">Pre 怎么都说 T1 好想但难调啊，简单贪心 + 小模拟评蓝还是太高了，这里就给出一种好写又好调的并查集做法。 Solution 根据题意可知，tk,i=1(k∈{1,2},1≤i≤n)t_{k, i} = 1(k \in \{ 1, 2\}, 1 \le i \le n)tk,i​=1(k∈{1,2},1≤i≤n) 的连续的 iii 所代表的 sk,is_{k, i}sk,i​ 之间可以任意互换，换句话说，字符串 tkt_ktk​ 将 sks_ksk​ 分割成了若干个连通块，属于同一个连通块中的不同字符可以互换，但应当保持 {0,1}\{ 0, 1\}{0,1} 的个数不变。然后一个贪心的思路呼之欲出了：  从左往右遍历到第 iii 个字符时，如果 s1,is_{1, i}s1,i​ 和 s2,is_{2, i}s2,i​ 所处的连通块中存在个数大于 000 的字符 0/10 / 10/1 时，就将匹配数加一，同时将该字符在连通块中的计数减少一；否则匹配数不变化，连通块中字符数量不为 000 的计数减少一。  贪心比较显然，毕竟每个下标对于答案产生的贡献只有 000 或...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/409901023/" title="【笔记/模板】数论相关模板"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】数论相关模板"></a></div><div class="recent-post-info"><a class="article-title" href="/post/409901023/" title="【笔记/模板】数论相关模板">【笔记/模板】数论相关模板</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-28T13:47:23.000Z" title="发表于 2024-11-28 21:47:23">2024-11-28</time></span></div><div class="content">最近考试经常考数学，但是我还没有整理过全部的板子，c不了，顺便考前熟悉一下。 质数 / 素数 O(n)O(\sqrt n)O(n​) 判断素数 1234567bool check(int x)&#123;    if (x &lt; 2) return false;    for (int i = 2; i &lt;= x / i; i ++)        if (x % i == 0) return false;    return true;&#125; O(nlog⁡log⁡n)O(n \log \log n)O(nloglogn) 埃拉托尼斯筛法 123456789101112bool vis[N];int primes[N], cnt;void Eratosthenes(int N)&#123;    for (int i = 2; i &lt;= N; i ++)    &#123;        if (!vis[i]) primes[++ cnt] = i;        else for (int j = i &lt;&lt; 1; j &lt;= N; j...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/2845219164/" title="【题解】JOI2013 電飾"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】JOI2013 電飾"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2845219164/" title="【题解】JOI2013 電飾">【题解】JOI2013 電飾</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-11T02:45:18.000Z" title="发表于 2024-11-11 10:45:18">2024-11-11</time></span></div><div class="content">Statement 简单题，但是题解貌似没有 dp 做法。 给定一段长度为 nnn 的 010101 字符串，允许至多反转其中一段区间，求满足 010101 相间要求的最大长度。 Solution 很典的状态机，不难想到一共有三种状态：  还没有进行反转 正在进行反转 已经反转完成  我们用 fi,0/1/2f_{i, 0/1/2}fi,0/1/2​ 分别表示第 iii 个数处于以上三种状态时候的最大长度，不难思考得出三者之间的状态转移如下： fi−1,0→fi,0fi−1,1,fi−1,0→fi,1fi−1,1,fi−1,2→fi,2f_{i - 1, 0} \to f_{i, 0}\\ f_{i - 1, 1}, f_{i - 1, 0} \to f_{i, 1}\\ f_{i - 1, 1}, f_{i - 1, 2} \to f_{i, 2} fi−1,0​→fi,0​fi−1,1​,fi−1,0​→fi,1​fi−1,1​,fi−1,2​→fi,2​ 初始状态当然有 f1,0=f1,1=1,f1,2=−∞f_{1, 0} = f_{1, 1} = 1, f_{1,...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/2259441590/" title="【题组】XCPC 2024 思维题训练"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题组】XCPC 2024 思维题训练"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2259441590/" title="【题组】XCPC 2024 思维题训练">【题组】XCPC 2024 思维题训练</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-11-07T03:55:41.000Z" title="发表于 2024-11-07 11:55:41">2024-11-07</time></span></div><div class="content">题目来源 题单：思维 - Virtual Judge problemPdfAll 来源：   Dashboard - 2024 China Collegiate Programming Contest (CCPC) Harbin Onsite (The 3rd Universal Cup. Stage 14: Harbin) - Codeforces   Dashboard - The 2024 ICPC Kunming Invitational Contest - Codeforces   Dashboard - The 2024 ICPC Asia EC Regionals Online Contest (II) - Codeforces   Dashboard - The 2024 CCPC Online Contest - Codeforces   Dashboard - The 8th Hebei Collegiate Programming Contest - Codeforces   Problem...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/2156760144/" title="【笔记/模板】分块"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】分块"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2156760144/" title="【笔记/模板】分块">【笔记/模板】分块</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-30T12:43:03.000Z" title="发表于 2024-10-30 20:43:03">2024-10-30</time></span></div><div class="content">今天写分块的时候模板忘光了，故写以记之。 Code Init 1234567891011void Init()&#123;    sz = sqrt(n), block = n / sz + (n % sz != 0);    for (int i = 1; i &lt;= block; i ++)        st[i] = (i - 1) * sz + 1, ed[i] = i * sz;    ed[block] = n;    for (int i = 1; i &lt;= block; i ++)        for (int j = st[i]; j &lt;= ed[i]; j ++)            belong[j] = i;&#125; 其中块长视题目情况而改变，一般为 n\sqrt nn​。 Modify / Query 123456789101112131415void/int Function(int x, int y)&#123;    int bx = belong[x], by = belong[y];    //...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/4130556455/" title="【题解】AT_dp_z Frog 3"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】AT_dp_z Frog 3"></a></div><div class="recent-post-info"><a class="article-title" href="/post/4130556455/" title="【题解】AT_dp_z Frog 3">【题解】AT_dp_z Frog 3</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-29T11:59:54.000Z" title="发表于 2024-10-29 19:59:54">2024-10-29</time></span></div><div class="content">Pre 题目链接。 这才是属于斜率优化的模板题，转移方程简单，公式转化也简单。 Statement 有 NNN 个石头，编号为 1,2,…,N1,2,\dots,N1,2,…,N，第 iii 个高为 hih_ihi​。保证 hhh 严格单调递增。 有一只青蛙在第一个石头上，它可以跳到石头编号为 i+1,i+2,…,Ni + 1, i + 2, \dots, Ni+1,i+2,…,N。当他跳到编号 jjj 石头时的花费是 (hi−hj)2+C(h_i - h_j) ^ 2 + C(hi​−hj​)2+C。求跳到编号为 NNN 石头的最小花费。 Solution Transform 首先转移方程可以直接秒掉，定义 dpidp_idpi​ 表示落到第 iii 个石头上的最小代价，有： dpi=min⁡j&lt;idpj+(hi−hj)2+Cdp_i = \min_{j &lt; i} dp_j + (h_i - h_j) ^ 2 +...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/2447416387/" title="【笔记/模板】缺省源"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】缺省源"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2447416387/" title="【笔记/模板】缺省源">【笔记/模板】缺省源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-25T12:09:31.000Z" title="发表于 2024-10-25 20:09:31">2024-10-25</time></span></div><div class="content">Debug 1234inline void debug() &#123; cerr &lt;&lt; &#x27;\n&#x27;; &#125;template&lt;typename Type, typename... Other&gt;inline void debug(const Type&amp; x, const Other&amp;... y) &#123; cerr &lt;&lt; x &lt;&lt; &#x27; &#x27;; debug(y...); &#125;#define DEBUG(a...) cerr &lt;&lt; &quot;[&quot; &lt;&lt; #a &lt;&lt; &quot;] = &quot;, debug(a) Read In 1234567891011template&lt;typename Type&gt;inline void read(Type &amp;res)&#123;    res = 0;    int ch = getchar(), flag = 0;    while...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/2375771485/" title="【题解】[ROIR 2021 Day 2] A + B"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】[ROIR 2021 Day 2] A + B"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2375771485/" title="【题解】[ROIR 2021 Day 2] A + B">【题解】[ROIR 2021 Day 2] A + B</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-24T05:45:05.000Z" title="发表于 2024-10-24 13:45:05">2024-10-24</time></span></div><div class="content">Statement 给定可能含前导零的三个位数为 nnn 的整数 A,B,CA,B,CA,B,C，求出排列 ppp 的个数，使得三个整数的每一位经过排列映射后得到的 A′,B′,C′A&#x27;,B&#x27;,C&#x27;A′,B′,C′ 可以使 A′+B′=C′A&#x27; + B&#x27; = C&#x27;A′+B′=C′ 成立，答案对 109+710^9 + 7109+7 取模。 下文中定义位数从右向左，例如 A1A_1A1​ 表示 AAA 的个位上的数，AnA_nAn​​ 为最高位的数。 Solution 一道并不难的排列组合计数题，复杂就在处理不同数位之间的进位问题。 不进位的情况 先考虑不进位的情况，每一位之间都不会互相影响，同时由于 A′,B′,C′A&#x27;,B&#x27;,C&#x27;A′,B′,C′ 不能含有前导零，我们定义 zerozerozero 表示有 000 的列数。 答案简洁明了，第一列放非 000 列，后面随便放即可。 ans=(n−zero)×(n−1)!ans = (n - zero) \times (n -...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/3097383871/" title="【题解】[ROI 2021 Day 1] 穿孔卡片"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】[ROI 2021 Day 1] 穿孔卡片"></a></div><div class="recent-post-info"><a class="article-title" href="/post/3097383871/" title="【题解】[ROI 2021 Day 1] 穿孔卡片">【题解】[ROI 2021 Day 1] 穿孔卡片</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-22T05:45:37.000Z" title="发表于 2024-10-22 13:45:37">2024-10-22</time></span></div><div class="content">Pre 一道并不难的图论模型题，前提是得要想得到图论。 Solution Subtask 111： 由于 n≤8n \le 8n≤8，直接将卡片的顺序进行全排列，再依次判断是否可行即可，预估时间复杂度为 O(n!×∑ki)O(n! \times \textstyle{\sum k_i})O(n!×∑ki​)。 Subtask 222： 由于卡片之间地约束条件很多，考虑搜索。理所当然地从上到下考虑，不妨先考虑第一张：第一张可以被选当且仅当该卡片上所有字母都可以和目标串匹配。一旦字符串上的某个位置 SiS_iSi​ 被匹配，我们标记掉这个位置，因为后面的卡片不会影响这个位置了。 不难发现，每一张卡片做出贡献的位置一定是目前第一次出现的位置，因此不必注意先后顺序。一旦可以有贡献并且合法，我们就进行下一层的搜索。 尽管理论时间复杂度为指数级别，但是真正的合法状态很少，可以拿到 505050 分。 Code 12345678910111213141516171819202122232425262728293031323334353637383940414243444546int n,...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/864613829/" title="【笔记/模板】矩阵运算"><img class="post-bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】矩阵运算"></a></div><div class="recent-post-info"><a class="article-title" href="/post/864613829/" title="【笔记/模板】矩阵运算">【笔记/模板】矩阵运算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-26T08:30:30.000Z" title="发表于 2024-09-26 16:30:30">2024-09-26</time></span></div><div class="content">不进行没必要的解释，主要记录模板。 1234567891011121314151617181920212223242526272829303132struct Matrix&#123;    int n, m, rec[N][N];    // 矩阵的长，宽和二维数组        Matrix(int _n, int _m) &#123; n = _n, m = _m, memset(rec, 0, sizeof rec); &#125;    // 初始化函数    void reset() &#123; n = 0, m = 0, memset(rec, 0, sizeof rec); &#125;        int* operator [] (int i) &#123; return rec[i]; &#125;    // 重载数组    const int* operator [] (int i) const &#123; return rec[i]; &#125;    // 重载数组    friend Matrix operator * (const...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">ThySecret</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/2095936422/" title="【题解】CF1823F Random Walk"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】CF1823F Random Walk"/></a><div class="content"><a class="title" href="/post/2095936422/" title="【题解】CF1823F Random Walk">【题解】CF1823F Random Walk</a><time datetime="2025-02-19T07:20:23.000Z" title="发表于 2025-02-19 15:20:23">2025-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/828825759/" title="【笔记/模板】多项式Ⅱ：多项式常见应用"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】多项式Ⅱ：多项式常见应用"/></a><div class="content"><a class="title" href="/post/828825759/" title="【笔记/模板】多项式Ⅱ：多项式常见应用">【笔记/模板】多项式Ⅱ：多项式常见应用</a><time datetime="2025-02-15T02:43:14.000Z" title="发表于 2025-02-15 10:43:14">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/1943475067/" title="【笔记/模板】阶和原根"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】阶和原根"/></a><div class="content"><a class="title" href="/post/1943475067/" title="【笔记/模板】阶和原根">【笔记/模板】阶和原根</a><time datetime="2025-02-13T07:38:48.000Z" title="发表于 2025-02-13 15:38:48">2025-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/378021250/" title="【笔记/模板】多项式Ⅰ：快速傅里叶变换和快速数论变换"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】多项式Ⅰ：快速傅里叶变换和快速数论变换"/></a><div class="content"><a class="title" href="/post/378021250/" title="【笔记/模板】多项式Ⅰ：快速傅里叶变换和快速数论变换">【笔记/模板】多项式Ⅰ：快速傅里叶变换和快速数论变换</a><time datetime="2025-02-11T03:30:23.000Z" title="发表于 2025-02-11 11:30:23">2025-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/2576816545/" title="【笔记/模板】zkw 线段树"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】zkw 线段树"/></a><div class="content"><a class="title" href="/post/2576816545/" title="【笔记/模板】zkw 线段树">【笔记/模板】zkw 线段树</a><time datetime="2025-02-06T11:58:11.000Z" title="发表于 2025-02-06 19:58:11">2025-02-06</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a> <a href="/tags/%E7%AC%94%E8%AE%B0-%E6%A8%A1%E6%9D%BF/" style="font-size: 1.5em; color: #99a9bf">笔记/模板</a> <a href="/tags/%E6%8A%80%E5%B7%A7-%E5%85%B6%E4%BB%96/" style="font-size: 1.1em; color: #999">技巧/其他</a> <a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 1.3em; color: #99a1ac">题解</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
       
-        get: key => {
-          const itemStr = localStorage.getItem(key)
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
       
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/01/">
+            <span class="card-archive-list-date">
+              一月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
       
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              十二月 2024
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
       
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/font.css"><link rel='stylesheet' href="https://chinese-fonts-cdn.deno.dev/packages/syst/dist/SourceHanSerifCN/result.css"><link rel='stylesheet' href="https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkai/dist/LXGWWenKai-Bold/result.css"><link href= "https://fonts.font.im/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet"><script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><script>window.paceOptions = {
-  restartOnPushState: false
-}
-
-document.addEventListener('pjax:send', () => {
-  Pace.restart()
-})
-</script><link rel="stylesheet" href="/css/flash.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.luogu.com.cn/upload/image_hosting/pmyhcjyb.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-code"></i><span> 程序开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="https://bronzemelontnt.github.io/tags/%E9%A2%98%E8%A7%A3/"><i class="fa-fw fas fa-question"></i><span> 题解</span></a></li><li><a class="site-page child" href="https://bronzemelontnt.github.io/tags/%E7%AC%94%E8%AE%B0-%E6%A8%A1%E6%9D%BF/"><i class="fa-fw fas fa-sticky-note"></i><span> 笔记/模板</span></a></li><li><a class="site-page child" href="https://bronzemelontnt.github.io/tags/%E6%8A%80%E5%B7%A7-%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-circle-exclamation"></i><span> 技巧/其他</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background: transparent"><nav id="nav"><span id="blog-info"><a href="/" title="Thy's Blog"><span class="site-name">Thy's Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 导航</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-code"></i><span> 程序开发</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="https://bronzemelontnt.github.io/tags/%E9%A2%98%E8%A7%A3/"><i class="fa-fw fas fa-question"></i><span> 题解</span></a></li><li><a class="site-page child" href="https://bronzemelontnt.github.io/tags/%E7%AC%94%E8%AE%B0-%E6%A8%A1%E6%9D%BF/"><i class="fa-fw fas fa-sticky-note"></i><span> 笔记/模板</span></a></li><li><a class="site-page child" href="https://bronzemelontnt.github.io/tags/%E6%8A%80%E5%B7%A7-%E5%85%B6%E4%BB%96/"><i class="fa-fw fas fa-circle-exclamation"></i><span> 技巧/其他</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Thy's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/bronzemelontnt" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2504371473@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/post/76325377/" title="【题解】NOIP2024 编辑字符串"><img class="post-bg" src="https://api.suyanw.cn/api/comic/api.php?5217" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】NOIP2024 编辑字符串"></a></div><div class="recent-post-info"><a class="article-title" href="/post/76325377/" title="【题解】NOIP2024 编辑字符串">【题解】NOIP2024 编辑字符串</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-30T10:03:48.000Z" title="发表于 2024-11-30 18:03:48">2024-11-30</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-30T10:37:17.067Z" title="更新于 2024-11-30 18:37:17">2024-11-30</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">Pre
-怎么都说 T1 好想但难调啊，简单贪心 + 小模拟评蓝还是太高了，这里就给出一种好写又好调的并查集做法。
-Solution
-根据题意可知，tk,i=1(k∈{1,2},1≤i≤n)t_{k, i} = 1(k \in \{ 1, 2\}, 1 \le i \le n)tk,i​=1(k∈{1,2},1≤i≤n) 的连续的 iii 所代表的 sk,is_{k, i}sk,i​ 之间可以任意互换，换句话说，字符串 tkt_ktk​ 将 sks_ksk​ 分割成了若干个连通块，属于同一个连通块中的不同字符可以互换，但应当保持 {0,1}\{ 0, 1\}{0,1} 的个数不变。然后一个贪心的思路呼之欲出了：
-
-从左往右遍历到第 iii 个字符时，如果 s1,is_{1, i}s1,i​ 和 s2,is_{2, i}s2,i​ 所处的连通块中存在个数大于 000 的字符 0/10 / 10/1 时，就将匹配数加一，同时将该字符在连通块中的计数减少一；否则匹配数不变化，连通块中字符数量不为 000 的计数减少一。
-
-贪心比较显然，毕竟每个下标对于答案产生的贡献只有 000 或 111 两 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/409901023/" title="【笔记/模板】数论相关模板"><img class="post-bg" src="https://imgapi.xl0408.top/index.php?1549" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】数论相关模板"></a></div><div class="recent-post-info"><a class="article-title" href="/post/409901023/" title="【笔记/模板】数论相关模板">【笔记/模板】数论相关模板</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-28T13:47:23.000Z" title="发表于 2024-11-28 21:47:23">2024-11-28</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-15T03:02:45.855Z" title="更新于 2025-02-15 11:02:45">2025-02-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0-%E6%A8%A1%E6%9D%BF/">笔记/模板</a></span></div><div class="content">最近考试经常考数学，但是我还没有整理过全部的板子，c不了，顺便考前熟悉一下。
-质数 / 素数
-O(n)O(\sqrt n)O(n​) 判断素数
-1234567bool check(int x)&#123;    if (x &lt; 2) return false;    for (int i = 2; i &lt;= x / i; i ++)        if (x % i == 0) return false;    return true;&#125;
-O(nlog⁡log⁡n)O(n \log \log n)O(nloglogn) 埃拉托尼斯筛法
-123456789101112bool vis[N];int primes[N], cnt;void Eratosthenes(int N)&#123;    for (int i = 2; i &lt;= N; i ++)    &#123;        if (!vis[i]) primes[++ cnt] = i;        else for (int j = i &lt;&lt; 1; j &lt;= N; j +=  ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/2845219164/" title="【题解】JOI2013 電飾"><img class="post-bg" src="https://api.suyanw.cn/api/comic/api.php?39" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】JOI2013 電飾"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2845219164/" title="【题解】JOI2013 電飾">【题解】JOI2013 電飾</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-11T02:45:18.000Z" title="发表于 2024-11-11 10:45:18">2024-11-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-29T02:52:52.849Z" title="更新于 2024-11-29 10:52:52">2024-11-29</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">Statement
-简单题，但是题解貌似没有 dp 做法。
-给定一段长度为 nnn 的 010101 字符串，允许至多反转其中一段区间，求满足 010101 相间要求的最大长度。
-Solution
-很典的状态机，不难想到一共有三种状态：
-
-还没有进行反转
-正在进行反转
-已经反转完成
-
-我们用 fi,0/1/2f_{i, 0/1/2}fi,0/1/2​ 分别表示第 iii 个数处于以上三种状态时候的最大长度，不难思考得出三者之间的状态转移如下：
-fi−1,0→fi,0fi−1,1,fi−1,0→fi,1fi−1,1,fi−1,2→fi,2f_{i - 1, 0} \to f_{i, 0}\\
-f_{i - 1, 1}, f_{i - 1, 0} \to f_{i, 1}\\
-f_{i - 1, 1}, f_{i - 1, 2} \to f_{i, 2}
-fi−1,0​→fi,0​fi−1,1​,fi−1,0​→fi,1​fi−1,1​,fi−1,2​→fi,2​
-初始状态当然有 f1,0=f1,1=1,f1,2=−∞f_{1, 0} = f_{1, 1} = 1, f_{1, 2} =  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/2259441590/" title="【题组】XCPC 2024 思维题训练"><img class="post-bg" src="https://api.mtyqx.cn/tapi/random.php?8371" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题组】XCPC 2024 思维题训练"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2259441590/" title="【题组】XCPC 2024 思维题训练">【题组】XCPC 2024 思维题训练</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-11-07T03:55:41.000Z" title="发表于 2024-11-07 11:55:41">2024-11-07</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-08T13:37:54.765Z" title="更新于 2024-11-08 21:37:54">2024-11-08</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">题目来源
-题单：思维 - Virtual Judge problemPdfAll
-来源：
-
-
-Dashboard - 2024 China Collegiate Programming Contest (CCPC) Harbin Onsite (The 3rd Universal Cup. Stage 14: Harbin) - Codeforces
-
-
-Dashboard - The 2024 ICPC Kunming Invitational Contest - Codeforces
-
-
-Dashboard - The 2024 ICPC Asia EC Regionals Online Contest (II) - Codeforces
-
-
-Dashboard - The 2024 CCPC Online Contest - Codeforces
-
-
-Dashboard - The 8th Hebei Collegiate Programming Contest - Codeforces
-
-
-Problem A
-简单贪心题，难度全在模拟上。
-首先选择之后可以充电的电池，并且先充电 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/2156760144/" title="【笔记/模板】分块"><img class="post-bg" src="https://api.mtyqx.cn/tapi/random.php?2266" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】分块"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2156760144/" title="【笔记/模板】分块">【笔记/模板】分块</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-30T12:43:03.000Z" title="发表于 2024-10-30 20:43:03">2024-10-30</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-15T03:02:12.683Z" title="更新于 2025-02-15 11:02:12">2025-02-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0-%E6%A8%A1%E6%9D%BF/">笔记/模板</a></span></div><div class="content">今天写分块的时候模板忘光了，故写以记之。
-Code
-Init
-1234567891011void Init()&#123;    sz = sqrt(n), block = n / sz + (n % sz != 0);    for (int i = 1; i &lt;= block; i ++)        st[i] = (i - 1) * sz + 1, ed[i] = i * sz;    ed[block] = n;    for (int i = 1; i &lt;= block; i ++)        for (int j = st[i]; j &lt;= ed[i]; j ++)            belong[j] = i;&#125;
-其中块长视题目情况而改变，一般为 n\sqrt nn​。
-Modify / Query
-123456789101112131415void/int Function(int x, int y)&#123;    int bx = belong[x], by = belong[y];    // pushdown(bx),  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/4130556455/" title="【题解】AT_dp_z Frog 3"><img class="post-bg" src="https://api.asxe.vip/scenery.php?1908" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】AT_dp_z Frog 3"></a></div><div class="recent-post-info"><a class="article-title" href="/post/4130556455/" title="【题解】AT_dp_z Frog 3">【题解】AT_dp_z Frog 3</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-29T11:59:54.000Z" title="发表于 2024-10-29 19:59:54">2024-10-29</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-29T13:21:16.865Z" title="更新于 2024-10-29 21:21:16">2024-10-29</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">Pre
-题目链接。
-这才是属于斜率优化的模板题，转移方程简单，公式转化也简单。
-Statement
-有 NNN 个石头，编号为 1,2,…,N1,2,\dots,N1,2,…,N，第 iii 个高为 hih_ihi​。保证 hhh 严格单调递增。
-有一只青蛙在第一个石头上，它可以跳到石头编号为 i+1,i+2,…,Ni + 1, i + 2, \dots, Ni+1,i+2,…,N。当他跳到编号 jjj 石头时的花费是
-(hi−hj)2+C(h_i - h_j) ^ 2 + C(hi​−hj​)2+C。求跳到编号为 NNN 石头的最小花费。
-Solution
-Transform
-首先转移方程可以直接秒掉，定义 dpidp_idpi​ 表示落到第 iii 个石头上的最小代价，有：
-dpi=min⁡j&lt;idpj+(hi−hj)2+Cdp_i = \min_{j &lt; i} dp_j + (h_i - h_j) ^ 2 + C
-dpi​=j&lt;imin​dpj​+(hi​−hj​)2+C
-然后参数分离，有：
-dpi=min⁡j&lt;i(dpj+hi2−2hihj+hj2+C) ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/2447416387/" title="【笔记/模板】缺省源"><img class="post-bg" src="https://api.asxe.vip/scenery.php?9381" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】缺省源"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2447416387/" title="【笔记/模板】缺省源">【笔记/模板】缺省源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-25T12:09:31.000Z" title="发表于 2024-10-25 20:09:31">2024-10-25</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-15T03:02:28.130Z" title="更新于 2025-02-15 11:02:28">2025-02-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0-%E6%A8%A1%E6%9D%BF/">笔记/模板</a></span></div><div class="content">Debug
-1234inline void debug() &#123; cerr &lt;&lt; &#x27;\n&#x27;; &#125;template&lt;typename Type, typename... Other&gt;inline void debug(const Type&amp; x, const Other&amp;... y) &#123; cerr &lt;&lt; x &lt;&lt; &#x27; &#x27;; debug(y...); &#125;#define DEBUG(a...) cerr &lt;&lt; &quot;[&quot; &lt;&lt; #a &lt;&lt; &quot;] = &quot;, debug(a)
-Read In
-1234567891011template&lt;typename Type&gt;inline void read(Type &amp;res)&#123;    res = 0;    int ch = getchar(), flag = 0;    while (!isdigit(ch))  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/2375771485/" title="【题解】[ROIR 2021 Day 2] A + B"><img class="post-bg" src="https://api.mtyqx.cn/tapi/random.php?2543" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】[ROIR 2021 Day 2] A + B"></a></div><div class="recent-post-info"><a class="article-title" href="/post/2375771485/" title="【题解】[ROIR 2021 Day 2] A + B">【题解】[ROIR 2021 Day 2] A + B</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-24T05:45:05.000Z" title="发表于 2024-10-24 13:45:05">2024-10-24</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-05T03:08:42.233Z" title="更新于 2024-11-05 11:08:42">2024-11-05</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">Statement
-给定可能含前导零的三个位数为 nnn 的整数 A,B,CA,B,CA,B,C，求出排列 ppp 的个数，使得三个整数的每一位经过排列映射后得到的 A′,B′,C′A&#x27;,B&#x27;,C&#x27;A′,B′,C′ 可以使 A′+B′=C′A&#x27; + B&#x27; = C&#x27;A′+B′=C′ 成立，答案对 109+710^9 + 7109+7 取模。
-下文中定义位数从右向左，例如 A1A_1A1​ 表示 AAA 的个位上的数，AnA_nAn​​ 为最高位的数。
-Solution
-一道并不难的排列组合计数题，复杂就在处理不同数位之间的进位问题。
-不进位的情况
-先考虑不进位的情况，每一位之间都不会互相影响，同时由于 A′,B′,C′A&#x27;,B&#x27;,C&#x27;A′,B′,C′ 不能含有前导零，我们定义 zerozerozero 表示有 000 的列数。
-答案简洁明了，第一列放非 000 列，后面随便放即可。
-ans=(n−zero)×(n−1)!ans = (n - zero) \times (n - 1)!
-ans=(n− ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/post/3097383871/" title="【题解】[ROI 2021 Day 1] 穿孔卡片"><img class="post-bg" src="https://api.mtyqx.cn/tapi/random.php?2124" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】[ROI 2021 Day 1] 穿孔卡片"></a></div><div class="recent-post-info"><a class="article-title" href="/post/3097383871/" title="【题解】[ROI 2021 Day 1] 穿孔卡片">【题解】[ROI 2021 Day 1] 穿孔卡片</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-22T05:45:37.000Z" title="发表于 2024-10-22 13:45:37">2024-10-22</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-11-05T03:08:39.751Z" title="更新于 2024-11-05 11:08:39">2024-11-05</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">Pre
-一道并不难的图论模型题，前提是得要想得到图论。
-Solution
-Subtask 111：
-由于 n≤8n \le 8n≤8，直接将卡片的顺序进行全排列，再依次判断是否可行即可，预估时间复杂度为 O(n!×∑ki)O(n! \times \textstyle{\sum k_i})O(n!×∑ki​)。
-Subtask 222：
-由于卡片之间地约束条件很多，考虑搜索。理所当然地从上到下考虑，不妨先考虑第一张：第一张可以被选当且仅当该卡片上所有字母都可以和目标串匹配。一旦字符串上的某个位置 SiS_iSi​ 被匹配，我们标记掉这个位置，因为后面的卡片不会影响这个位置了。
-不难发现，每一张卡片做出贡献的位置一定是目前第一次出现的位置，因此不必注意先后顺序。一旦可以有贡献并且合法，我们就进行下一层的搜索。
-尽管理论时间复杂度为指数级别，但是真正的合法状态很少，可以拿到 505050 分。
-Code
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546int n, m;cha ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/post/864613829/" title="【笔记/模板】矩阵运算"><img class="post-bg" src="https://api.mtyqx.cn/tapi/random.php?8771" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】矩阵运算"></a></div><div class="recent-post-info"><a class="article-title" href="/post/864613829/" title="【笔记/模板】矩阵运算">【笔记/模板】矩阵运算</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-26T08:30:30.000Z" title="发表于 2024-09-26 16:30:30">2024-09-26</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-15T03:02:20.928Z" title="更新于 2025-02-15 11:02:20">2025-02-15</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%AC%94%E8%AE%B0-%E6%A8%A1%E6%9D%BF/">笔记/模板</a></span></div><div class="content">不进行没必要的解释，主要记录模板。
-1234567891011121314151617181920212223242526272829303132struct Matrix&#123;    int n, m, rec[N][N];    // 矩阵的长，宽和二维数组        Matrix(int _n, int _m) &#123; n = _n, m = _m, memset(rec, 0, sizeof rec); &#125;    // 初始化函数    void reset() &#123; n = 0, m = 0, memset(rec, 0, sizeof rec); &#125;        int* operator [] (int i) &#123; return rec[i]; &#125;    // 重载数组    const int* operator [] (int i) const &#123; return rec[i]; &#125;    // 重载数组    friend Matrix operator * (const Matrix ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.luogu.com.cn/upload/image_hosting/pmyhcjyb.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ThySecret</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/bronzemelontnt"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/bronzemelontnt" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2504371473@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">如果 Latex 挂了试试开梯子（文章封面均为随机 api 获取</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/2095936422/" title="【题解】CF1823F Random Walk"><img src="https://api.asxe.vip/random.php?6617" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【题解】CF1823F Random Walk"/></a><div class="content"><a class="title" href="/post/2095936422/" title="【题解】CF1823F Random Walk">【题解】CF1823F Random Walk</a><time datetime="2025-02-19T07:20:23.000Z" title="发表于 2025-02-19 15:20:23">2025-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/828825759/" title="【笔记/模板】多项式Ⅱ：多项式常见应用"><img src="https://api.horosama.com/random.php?653" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】多项式Ⅱ：多项式常见应用"/></a><div class="content"><a class="title" href="/post/828825759/" title="【笔记/模板】多项式Ⅱ：多项式常见应用">【笔记/模板】多项式Ⅱ：多项式常见应用</a><time datetime="2025-02-15T02:43:14.000Z" title="发表于 2025-02-15 10:43:14">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/1943475067/" title="【笔记/模板】阶和原根"><img src="https://api.suyanw.cn/api/comic/api.php?1548" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】阶和原根"/></a><div class="content"><a class="title" href="/post/1943475067/" title="【笔记/模板】阶和原根">【笔记/模板】阶和原根</a><time datetime="2025-02-13T07:38:48.000Z" title="发表于 2025-02-13 15:38:48">2025-02-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/378021250/" title="【笔记/模板】多项式Ⅰ：快速傅里叶变换和快速数论变换"><img src="https://api.asxe.vip/random.php?3095" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】多项式Ⅰ：快速傅里叶变换和快速数论变换"/></a><div class="content"><a class="title" href="/post/378021250/" title="【笔记/模板】多项式Ⅰ：快速傅里叶变换和快速数论变换">【笔记/模板】多项式Ⅰ：快速傅里叶变换和快速数论变换</a><time datetime="2025-02-11T03:30:23.000Z" title="发表于 2025-02-11 11:30:23">2025-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/2576816545/" title="【笔记/模板】zkw 线段树"><img src="https://api.horosama.com/random.php?2572" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【笔记/模板】zkw 线段树"/></a><div class="content"><a class="title" href="/post/2576816545/" title="【笔记/模板】zkw 线段树">【笔记/模板】zkw 线段树</a><time datetime="2025-02-06T11:58:11.000Z" title="发表于 2025-02-06 19:58:11">2025-02-06</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.15em; color: rgb(184, 178, 199)">随笔</a><a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 1.3em; color: rgb(170, 147, 71)">题解</a><a href="/tags/%E6%8A%80%E5%B7%A7-%E5%85%B6%E4%BB%96/" style="font-size: 1.15em; color: rgb(30, 116, 115)">技巧/其他</a><a href="/tags/%E7%AC%94%E8%AE%B0-%E6%A8%A1%E6%9D%BF/" style="font-size: 1.45em; color: rgb(180, 180, 13)">笔记/模板</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/02/"><span class="card-archive-list-date">二月 2025</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/10/"><span class="card-archive-list-date">十月 2024</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">8</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/07/"><span class="card-archive-list-date">七月 2024</span><span class="card-archive-list-count">3</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">73</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">107.2k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-02-19T10:35:25.960Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By ThySecret</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi, welcome to my <a href="https://bronzemelontnt.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
-  if (typeof pangu === 'object') pangu.autoSpacingPage()
-  else {
-    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
-      .then(() => {
-        pangu.autoSpacingPage()
-      })
-  }
-}
-
-function panguInit () {
-  if (false){
-    GLOBAL_CONFIG_SITE.isPost && panguFn()
-  } else {
-    panguFn()
-  }
-}
-
-document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>window.typedJSFn = {
-  init: (str) => {
-    window.typed = new Typed('#subtitle', Object.assign({
-      strings: str,
-      startDelay: 300,
-      typeSpeed: 150,
-      loop: true,
-      backSpeed: 50,
-    }, null))
-  },
-  run: (subtitleType) => {
-    if (true) {
-      if (typeof Typed === 'function') {
-        subtitleType()
-      } else {
-        getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
-      }
-    } else {
-      subtitleType()
-    }
-  }
-}
-</script><script>function subtitleType () {
-  if (true) {
-    typedJSFn.init(["僕の本当を忘れたいから","樱花满地集于我心，蝶舞纷飞祈愿相随","我与春风皆过客，你携秋水揽星河","不信多情，长恨离亭，泪滴春衫酒易醒","崔以落馨舞，雨以芳纷尽","寒灯纸上梨花雨，我等风雪又一年","悟已往之不谏，知来者之可追","落日沉溺于橘色的海，晚风沦陷于赤诚的爱"])
-  } else {
-    document.getElementById("subtitle").textContent = "僕の本当を忘れたいから"
-  }
-}
-typedJSFn.run(subtitleType)</script></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="/js/ft.js"></script><link rel="stylesheet" href="/css/halftrans.css"><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/11/">
+            <span class="card-archive-list-date">
+              十一月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/09/">
+            <span class="card-archive-list-date">
+              九月 2024
+            </span>
+            <span class="card-archive-list-count">8</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/07/">
+            <span class="card-archive-list-date">
+              七月 2024
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">73</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-02-22T13:53:36.904Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By ThySecret</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.3</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
