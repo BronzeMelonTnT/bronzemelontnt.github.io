@@ -1,11 +1,6 @@
-/* @font-face {
-  font-family: 'NotoSerif';
+@font-face {
+  font-family: 'lxgw';
   font-display: swap;
-  src: url('./font/NotoSerifSC-Regular.ttf') format("truetype");
-} */
-
-/* @font-face {
-  font-family: 'Fira Code';
+  src: url('/fonts/LXGWWenKaiMono-Regular.ttf') format("truetype");  
   font-display: swap;
-  src: url('./font/FiraCode-Regular.ttf') format("truetype");
-} */
+}
